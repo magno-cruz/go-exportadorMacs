@@ -1,7 +1,9 @@
 package main
 
 import (
-	"fmt"
+	//"fmt"
+	//"os"
+	//"strings"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
@@ -10,20 +12,39 @@ import (
 )
 
 func main() {
+
 	a := app.New()
 	w := a.NewWindow("Exportador de Macs")
-	w.Resize(fyne.NewSize(300, 700))
+	w.Resize(fyne.NewSize(300, 500))
 
-	macs := widget.NewMultiLineEntry()
+	codigo := widget.NewMultiLineEntry()
+	//texto := widget.NewMultiLineEntry()
 
-	//fmt.Printf("%v", macs)
-
-	content := container.NewVBox(macs, widget.NewButton("Save", func() {
-		fmt.Println("Content was:", macs.Text)
+	/*f, err := os.Create("interfocus.txt")
+	if err != nil {
+		fmt.Println("Arquivo já existe")
+	} else {
+		fmt.Println("Arquivo não existe")
+	}*/
+	content := container.NewVBox(codigo, widget.NewButton("Código", func() {
+		return
 	}))
+	/*content2 := container.NewVBox(texto, widget.NewButton("Formatar", func() {
+		macs := strings.Split(texto.Text, "\n")
+		for i := 0; i < len(macs); i++ {
+			macs[i] = fmt.Sprintf("0000000000000%v%v000001", codigo, macs[i])
+		}
 
-	w.SetContent(widget.NewLabel("Formatas os macs escaneados para o padrão de importação do InterFocus."))
+		juntar := strings.Join(macs, "\n")
+		exportar := []byte(juntar)
+
+		f.Write(exportar)
+	}))*/
+
+	w.SetContent(widget.NewLabel("Formatar os macs escaneados para o padrão de importação do InterFocus."))
 
 	w.SetContent(content)
+	//w.SetContent(content2)
 	w.ShowAndRun()
+
 }
